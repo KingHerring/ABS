@@ -1,0 +1,23 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name = "laboratorinis2.Destytojas" table = "destytojai">
+      
+      <meta attribute = "class-description">
+         Dėstytojų duomenys 
+      </meta>
+     
+      <id name = "kodas" type = "int" column = "kodas">
+         <generator class="native"/>
+      </id>
+      
+    <!--   <id name = "kodas" type = "int" column = "kodas"/> -->
+      
+      <property name = "vardas" column = "vardas" type = "string"/>
+      <property name = "pavarde" column = "pavarde" type = "string"/>
+      
+   </class>
+</hibernate-mapping>
