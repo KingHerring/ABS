@@ -19,6 +19,24 @@
       <property name = "pavadinimas" column = "pavadinimas" type = "string"/>
       <many-to-one name = "destytojas" column = "destytojas" 
          class="laboratorinis2.Destytojas" not-null="true" lazy ="false" />
+               
+      
+         <set name="grupes" table="grupes_kursai" 
+        	inverse="false" lazy="false" fetch="select" >
+            <key>
+                <column name="kurso_kodas" not-null="true" />
+            </key>
+            <many-to-many entity-name="laboratorinis2.Grupe">
+                <column name="grupes_kodas" not-null="true" />
+            </many-to-many>
+        </set>
+        
+      <set name = "uzduotys" table = "uzduotys" fetch = "select"  lazy = "false" cascade="all">
+      	<key>
+      		<column name = "kursas" not-null = "true"></column>
+      	</key>
+      	<one-to-many class = "laboratorinis2.Uzduotis"/>
+      </set> 
       
    </class>
 </hibernate-mapping>

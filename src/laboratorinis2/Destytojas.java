@@ -1,6 +1,7 @@
 package laboratorinis2;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Destytojas {
 	
@@ -8,7 +9,7 @@ public class Destytojas {
 	private int kodas;
 	private String vardas;
 	private String pavarde;
-	private ArrayList<Kursas> kursai = new ArrayList<>();
+	private Set<Kursas> kursai;
 	
 	Destytojas(){
 		
@@ -70,13 +71,17 @@ public class Destytojas {
 	}
 
 
-	public ArrayList<Kursas> getKursai() {
+	public Set<Kursas> getKursai() {
 		return kursai;
 	}
 	
 
-	public void setKursai(ArrayList<Kursas> kursai) {
+	public void setKursai(Set<Kursas> kursai) {
 		this.kursai = kursai;
+		/*System.out.println(this.toString());
+		for(Kursas k: this.getKursai()) {
+			System.out.println(k);
+		}*/
 	}
 
 	@Override

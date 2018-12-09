@@ -1,12 +1,13 @@
 package laboratorinis2;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Grupe implements Comparable<Grupe>{
 	
 	private String kodas;
 	private ArrayList<Studentas> studentai = new ArrayList<>();
-	private ArrayList<Kursas> kursai = new ArrayList<>();
+	private Set<Kursas> kursai;
 	
 	Grupe(){
 		
@@ -55,11 +56,20 @@ public class Grupe implements Comparable<Grupe>{
 	}
 	
 		
-	public ArrayList<Kursas> getKursai() {
+	public Set<Kursas> getKursai() {
 		return kursai;
 	}
-
 	
+	
+	
+	public void setStudentai(ArrayList<Studentas> studentai) {
+		this.studentai = studentai;
+	}
+
+	public void setKursai(Set<Kursas> kursai) {
+		this.kursai = kursai;
+	}
+
 	@Override
 	public String toString() {
 		return kodas;

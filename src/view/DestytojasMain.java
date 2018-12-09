@@ -20,6 +20,7 @@ import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.Collections;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -103,11 +104,9 @@ public class DestytojasMain extends JFrame {
 			
 				if(list.getSelectedIndex()>-1) {
 					kursas = list.getModel().getElementAt(list.getSelectedIndex());
-					//UpdateGrupesList(list_1);
 				}
 				else { 
 					kursas = null;
-					//UpdateGrupesList(list_1);
 				}
 				UpdateGrupesList(list_1);
 				UpdateUzduotysList(list_2);
@@ -171,9 +170,6 @@ public class DestytojasMain extends JFrame {
 		buttonKrRmv.setBounds(10, 305, 90, 25);
 		contentPane.add(buttonKrRmv);
 		
-		/*JList<Grupe> list_2 = new JList();
-		list_2.setBounds(375, 60, 250, 200);
-		contentPane.add(list_2);*/
 		
 		JLabel lblKursoUduotys = new JLabel("Kurso užduotys");
 		lblKursoUduotys.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -210,9 +206,6 @@ public class DestytojasMain extends JFrame {
 		btnRedaguoti.setBounds(536, 270, 90, 25);
 		contentPane.add(btnRedaguoti);
 		
-	/*	JList list_1 = new JList();
-		list_1.setBounds(260, 62, 90, 198);
-		contentPane.add(list_1);*/
 	}
 	
 	private void Atsijungti() {
@@ -222,9 +215,14 @@ public class DestytojasMain extends JFrame {
 	}
 	
 	private void UpdateKursaiList(JList<Kursas> list){
+		
+		try {
+			this.destytojas = abs.GautiDestytojaPagalID(this.destytojas.getKodas());
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		DefaultListModel<Kursas> model = new DefaultListModel<>();
-		//for(Kursas k: destytojas.getKursai()) {
-		for(Kursas k: abs.GetDestytojoKursai(destytojas)) {
+		for(Kursas k: destytojas.getKursai()) {
 			model.addElement(k);
 		}
 		list.setModel(model);
@@ -244,6 +242,7 @@ public class DestytojasMain extends JFrame {
 	private void UpdateUzduotysList(JList<Uzduotis> list) {
 		DefaultListModel<Uzduotis> model = new DefaultListModel<>();
 		if(kursas!=null) {
+			//System.out.println(kursas);
 			for(Uzduotis u: kursas.getUzduotys()) {
 				model.addElement(u);
 			}		
@@ -261,7 +260,8 @@ public class DestytojasMain extends JFrame {
 		}
 
 		kursas.getGrupes().remove(g);
-		g.getKursai().remove(kursas);
+		abs.AtnaujintiKursa(kursas);
+		//g.getKursai().remove(kursas);
 		UpdateGrupesList(list);
 		
 	}
@@ -275,12 +275,15 @@ public class DestytojasMain extends JFrame {
 			return;
 		}
 		kursas.getUzduotys().remove(u);
+		abs.PasalintiUzduoti(u);
+		abs.AtnaujintiKursa(kursas);
 		UpdateUzduotysList(list);
 	}
 	
 	
 	public void PasalintiKursa(JList<Kursas> list) {
-		destytojas.getKursai().remove(kursas);
+		abs.PasalintiKursa(kursas);
+		//destytojas.getKursai().remove(kursas);
 		UpdateKursaiList(list);
 
 	}
@@ -289,7 +292,7 @@ public class DestytojasMain extends JFrame {
 		if(kursas != null) {
 			GrupiuPridejimas gp = new GrupiuPridejimas(abs, kursas);
 			gp.setVisible(true);
-			Collections.sort(kursas.getGrupes());
+			//Collections.sort((List<T>) kursas.getGrupes());
 			UpdateGrupesList(list);
 		}
 		else { 
@@ -305,7 +308,7 @@ public class DestytojasMain extends JFrame {
 	
 	private void PridetiUzduoti(JList<Uzduotis> list) {
 		if(kursas != null) {
-			UzduotiesPridejimas up = new UzduotiesPridejimas(kursas);
+			UzduotiesPridejimas up = new UzduotiesPridejimas(abs, kursas);
 			up.setVisible(true);
 			UpdateUzduotysList(list);
 		}

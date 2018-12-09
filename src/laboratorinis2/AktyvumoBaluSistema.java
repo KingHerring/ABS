@@ -2,6 +2,7 @@ package laboratorinis2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -40,6 +41,21 @@ public class AktyvumoBaluSistema {
 		grupes.add(naujaGrupe);
 	}
 	
+	public void AtnaujintiKursa(Kursas k) {
+		Session s = sf.openSession();
+		Transaction t = s.beginTransaction();
+		
+		try {
+			//s.merge(k);
+			s.update(k);
+			t.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			t.rollback();
+		}
+		s.close();
+	}
+	
 	public void PridetiStudenta(Studentas studentas) {
 		Session s = sf.openSession();
 		Transaction t = s.beginTransaction();
@@ -69,7 +85,37 @@ public class AktyvumoBaluSistema {
 		s.close();
 	}
 	
-	public void RodytiVisusDestytojus() {
+	public void PasalintiKursa(Kursas k) {
+		Session s = sf.openSession();
+		Transaction t = s.beginTransaction();
+		
+		try {
+			s.remove(k);
+			t.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			t.rollback();
+		}
+		s.close();
+	}
+	
+	public void PasalintiUzduoti(Uzduotis u) {
+		Session s = sf.openSession();
+		Transaction t = s.beginTransaction();
+		
+		try {
+			s.remove(u);
+			t.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			t.rollback();
+		}
+		s.close();
+	}
+	
+	//public void PasalintiGrupeIsKurso
+	
+	/*public void RodytiVisusDestytojus() {
 		System.out.println("Destytojai:");
 		for (Destytojas destytojas : destytojai) {
 			System.out.println(destytojas);
@@ -88,7 +134,7 @@ public class AktyvumoBaluSistema {
 		for(Grupe g: grupes) {
 			g.RodytiGrupesStudentus();
 		}	
-	}
+	}*/
 	
 	public Destytojas GautiDestytojaPagalID(int id) throws Exception{
 		
@@ -98,12 +144,14 @@ public class AktyvumoBaluSistema {
 		try {	
 			d = (Destytojas) s.get(Destytojas.class, id);
 			t.commit();
-			return d;				
+			s.close();
+			return d;			
 		}catch(Exception ex) {			
 			System.out.println(ex);
-			t.rollback();			
+			t.rollback();	
+			s.close();
 		}
-		s.close();
+
 		
 		Exception ex = new Exception();
 		throw(ex);
@@ -125,12 +173,6 @@ public class AktyvumoBaluSistema {
 			s.close();
 		}
 
-		
-		/*for(Grupe grupe: grupes) {
-			if(grupe.getKodas().toLowerCase().equals(id.toLowerCase())) {
-				return grupe;
-			}
-		}*/
 		Exception ex = new Exception();
 		throw(ex);
 	}
@@ -144,19 +186,13 @@ public class AktyvumoBaluSistema {
 			studentas = s.get(Studentas.class, id);
 			t.commit();
 			s.close();
-			//System.out.println(studentas);
 			return studentas;
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			t.rollback();
 			s.close();
 		}
-		
-		
-		/*for(Grupe g: grupes) {
-			if(g.GautiStudentaPagalID(id)!=null) 
-				return g.GautiStudentaPagalID(id);
-		}*/		
+			
 		Exception ex = new Exception();
 		throw(ex);
 	}
@@ -175,21 +211,24 @@ public class AktyvumoBaluSistema {
 		try {
 			ArrayList<Destytojas> d = (ArrayList<Destytojas>) s.createQuery("FROM Destytojas").list();
 			t.commit();
+			s.close();
 			return d;
 		}catch(Exception ex) {
 			System.out.println(ex);
 			t.rollback();
+			s.close();
 		}
 		return null;
 	}
 	
-	public ArrayList<Kursas> GetDestytojoKursai(Destytojas d){
+	/*public ArrayList<Kursas> GetDestytojoKursai(Destytojas d){
 		
 		Session s = sf.openSession();
 		Transaction t = s.beginTransaction();
 		ArrayList<Kursas> kursai = null;
 		try {
 			//kursai = (ArrayList<Kursas>) s.createQuery("FROM Kursas WHERE destytojas = " + d.getKodas());
+			//kursai = 
 			t.commit();
 		}catch(Exception ex) {
 			ex.printStackTrace();
@@ -197,7 +236,7 @@ public class AktyvumoBaluSistema {
 		}
 		s.close();
 		return kursai;
-	}
+	}*/
 	
 	public ArrayList<Studentas> getStudentai() {
 		Session s = sf.openSession();
@@ -205,10 +244,12 @@ public class AktyvumoBaluSistema {
 		try {
 			ArrayList<Studentas> st = (ArrayList<Studentas>) s.createQuery("FROM Studentas").list();
 			t.commit();
+			s.close();
 			return st;
 		}catch(Exception ex) {
 			System.out.println(ex);
 			t.rollback();
+			s.close();
 		}
 		return null;
 	}
@@ -224,9 +265,40 @@ public class AktyvumoBaluSistema {
 			ex.printStackTrace();
 			t.rollback();
 		}		
-		s.close();
-				
+		s.close();				
 		return gr;
 	}	
+	
+	public List<Grupe> getNeitrauktosGrupes(Kursas k){
+		
+		
+		Session s = sf.openSession();
+		Transaction t = s.beginTransaction();
+		List<Grupe> gr = null;	
+		try {
+			gr = s.createQuery("FROM Grupe").list();
+			
+			for(Grupe grupe: k.getGrupes()) {
+				for(Grupe grupe2: gr) {
+					if(grupe.getKodas().equals(grupe2.getKodas())) {
+						gr.remove(grupe2);
+						break;
+					}
+				}
+			}
+			
+			t.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			t.rollback();
+		}		
+		s.close();
+		
+		/*for(Grupe grupe: gr) {
+			System.out.println(grupe);
+		}*/				
+		return gr;
+		
+	}
 	
 }

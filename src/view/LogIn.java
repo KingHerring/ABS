@@ -36,7 +36,7 @@ import java.sql.*
 	 */
 	public static void main(String[] args) {
 		abs = new AktyvumoBaluSistema();
-		Lab2.Init(abs);
+		//Lab2.Init(abs);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -71,8 +71,6 @@ import java.sql.*
 		JMenuItem mntmSraas = new JMenuItem("Sąrašas");
 		mntmSraas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			//	abs.RodytiVisusDestytojus();
-			//	abs.RodytiVisusStudentus();
 				PerziuretiVartotojuInfo();
 			}
 		});
@@ -107,7 +105,7 @@ import java.sql.*
 						PrijungtiStudenta(abs, studentas);
 					}
 				}catch(Exception e) {
-					//JOptionPane.showMessageDialog(null, "Klaidingai įvestas kodas", "Klaida", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Klaidingai įvestas kodas", "Klaida", JOptionPane.ERROR_MESSAGE);
 					e.printStackTrace();
 				}
 			}

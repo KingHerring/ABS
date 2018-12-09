@@ -31,6 +31,7 @@
       <mapping resource = "grupe.xml"/>
       <mapping resource = "studentas.xml"/>
       <mapping resource = "kursas.xml"/>
+      <mapping resource = "uzduotis.xml"/>
       
    </session-factory>
 </hibernate-configuration>

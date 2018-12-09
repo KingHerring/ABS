@@ -14,6 +14,7 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.border.TitledBorder;
 
+import laboratorinis2.AktyvumoBaluSistema;
 import laboratorinis2.Kursas;
 import laboratorinis2.Uzduotis;
 
@@ -33,6 +34,7 @@ public class UzduotiesPridejimas extends JDialog {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextArea textArea;
+	private AktyvumoBaluSistema abs;
 	private Kursas kursas;
 	private JComboBox<String> metai;
 	private JComboBox<String> menesis;
@@ -44,7 +46,8 @@ public class UzduotiesPridejimas extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public UzduotiesPridejimas(Kursas kursas) {
+	public UzduotiesPridejimas(AktyvumoBaluSistema abs, Kursas kursas) {
+		this.abs = abs;
 		this.kursas = kursas;
 		setModal(true);
 		setTitle("Prid\u0117ti u\u017Eduot\u012F");
@@ -197,6 +200,7 @@ public class UzduotiesPridejimas extends JDialog {
 					+ valanda.getModel().getSelectedItem().toString() + ":"
 					+ minutes.getModel().getSelectedItem().toString(), kursas);
 			kursas.getUzduotys().add(u);
+			abs.AtnaujintiKursa(kursas);
 			this.dispose();
 		}catch(Exception ex) {
 			JOptionPane.showMessageDialog(null, "Įvyko klaida. Patikrinkite įvestas reikšmes.", "Klaida", JOptionPane.ERROR_MESSAGE);

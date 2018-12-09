@@ -18,6 +18,12 @@
       
       <property name = "vardas" column = "vardas" type = "string"/>
       <property name = "pavarde" column = "pavarde" type = "string"/>
+       <set name = "kursai" table = "kursai" fetch = "select"  lazy = "false"  cascade = "all">
+      	<key>
+      		<column name = "destytojas" not-null = "true"></column>
+      	</key>
+      	<one-to-many class = "laboratorinis2.Kursas"/>
+      </set> 
       
    </class>
 </hibernate-mapping>

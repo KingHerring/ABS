@@ -1,6 +1,7 @@
 package laboratorinis2;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Kursas {
 
@@ -8,8 +9,8 @@ public class Kursas {
 	private int kodas;
 	private String pavadinimas;
 	private Destytojas destytojas;
-	private ArrayList<Grupe> grupes = new ArrayList<>();
-	private ArrayList<Uzduotis> uzduotys = new ArrayList<>();
+	private Set<Grupe> grupes;
+	private Set<Uzduotis> uzduotys;
 	
 	Kursas(){
 		
@@ -44,7 +45,7 @@ public class Kursas {
 		this.pavadinimas = pavadinimas;
 	}
 
-	public ArrayList<Grupe> getGrupes() {
+	public Set<Grupe> getGrupes() {
 		return grupes;
 	}
 
@@ -56,8 +57,18 @@ public class Kursas {
 		this.destytojas = destytojas;
 	}
 
-	public ArrayList<Uzduotis> getUzduotys() {
+	public Set<Uzduotis> getUzduotys() {
 		return uzduotys;
+	}
+	
+	
+
+	public void setGrupes(Set<Grupe> grupes) {
+		this.grupes = grupes;
+	}
+
+	public void setUzduotys(Set<Uzduotis> uzduotys) {
+		this.uzduotys = uzduotys;
 	}
 
 	@Override

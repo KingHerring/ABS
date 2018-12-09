@@ -19,6 +19,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
@@ -92,12 +95,15 @@ public class GrupiuPridejimas extends JDialog {
 	}
 	
 	private void UpdateGrupesList() {
+
 		DefaultListModel<Grupe> model = new DefaultListModel<Grupe>();
-		ArrayList<Grupe> nepridetosGrupes = new ArrayList<Grupe>(abs.getGrupes());
-		
-		for(Grupe g: kursas.getGrupes()) {
+		//ArrayList<Grupe> nepridetosGrupes = abs.getGrupes();
+		List<Grupe> nepridetosGrupes = abs.getNeitrauktosGrupes(kursas);
+
+
+		/*for(Grupe g: kursas.getGrupes()) {
 			nepridetosGrupes.remove(g);
-		}
+		}*/
 		
 		for(Grupe g: nepridetosGrupes) {
 			model.addElement(g);
@@ -111,8 +117,9 @@ public class GrupiuPridejimas extends JDialog {
 	
 			for(Grupe g: pasirinktosGrupes) {
 				kursas.getGrupes().add(g);
-				g.getKursai().add(kursas);
+				//g.getKursai().add(kursas);
 			}
+			abs.AtnaujintiKursa(kursas);
 			this.dispose();
 		
 		}catch(Exception ex) {
