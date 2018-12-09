@@ -242,7 +242,6 @@ public class DestytojasMain extends JFrame {
 	private void UpdateUzduotysList(JList<Uzduotis> list) {
 		DefaultListModel<Uzduotis> model = new DefaultListModel<>();
 		if(kursas!=null) {
-			//System.out.println(kursas);
 			for(Uzduotis u: kursas.getUzduotys()) {
 				model.addElement(u);
 			}		
@@ -258,12 +257,9 @@ public class DestytojasMain extends JFrame {
 			JOptionPane.showMessageDialog(null, "Nepasirinkote grupės", "Klaida", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
 		kursas.getGrupes().remove(g);
 		abs.AtnaujintiKursa(kursas);
-		//g.getKursai().remove(kursas);
-		UpdateGrupesList(list);
-		
+		UpdateGrupesList(list);	
 	}
 	
 	private void PasalintiUzduoti(JList<Uzduotis> list, int uzduotiesIndex) {
@@ -283,7 +279,6 @@ public class DestytojasMain extends JFrame {
 	
 	public void PasalintiKursa(JList<Kursas> list) {
 		abs.PasalintiKursa(kursas);
-		//destytojas.getKursai().remove(kursas);
 		UpdateKursaiList(list);
 
 	}
@@ -292,7 +287,6 @@ public class DestytojasMain extends JFrame {
 		if(kursas != null) {
 			GrupiuPridejimas gp = new GrupiuPridejimas(abs, kursas);
 			gp.setVisible(true);
-			//Collections.sort((List<T>) kursas.getGrupes());
 			UpdateGrupesList(list);
 		}
 		else { 
@@ -321,7 +315,6 @@ public class DestytojasMain extends JFrame {
 		if(uzduotis != null) {
 		UzduotisInfo ui = new UzduotisInfo(uzduotis);
 		ui.setVisible(true);
-		}
-		
+		}		
 	}
 }

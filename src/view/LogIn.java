@@ -15,7 +15,6 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import laboratorinis2.AktyvumoBaluSistema;
-import laboratorinis2.Lab2;
 import laboratorinis2.Studentas;
 import laboratorinis2.Destytojas;
 import javax.swing.JMenuBar;
@@ -36,7 +35,6 @@ import java.sql.*
 	 */
 	public static void main(String[] args) {
 		abs = new AktyvumoBaluSistema();
-		//Lab2.Init(abs);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

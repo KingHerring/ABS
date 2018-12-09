@@ -67,8 +67,7 @@ public class VartotojuSarasas extends JFrame {
 		table_1 = new JTable();
 		scrollPane_1.setViewportView(table_1);
 		table_1.setModel(new DefaultTableModel(
-				/*new Object[][] {
-				},*/GetStudentaiDuom(),
+				GetStudentaiDuom(),
 				new String[] {
 					"Kodas", "Vardas", "Pavarde", "Grupė"
 				}
@@ -119,26 +118,7 @@ public class VartotojuSarasas extends JFrame {
 			studentai[i][3] = s.getGrupe().toString();
 			i++;
 		}
-		
-		/*int studentuSkaicius = 0;
-		for(Grupe g: abs.getGrupes()) {
-			studentuSkaicius += g.getStudentai().size();
-		}
-		int i=0;
-		String[][] studentai = new String[studentuSkaicius][4]; // 4 stulpeliai
-		
-		for(Grupe g: abs.getGrupes()) {
-			
-			for(Studentas s: g.getStudentai()) {
-				studentai[i][0] = Integer.toString(s.getKodas());
-				studentai[i][1] = s.getVardas();
-				studentai[i][2] = s.getPavarde();
-				studentai[i][3] = g.getKodas();
-				i++;
-			}
-			
-		}*/
-			
+					
 		return studentai;
 	}
 	

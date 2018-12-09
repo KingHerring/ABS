@@ -46,7 +46,6 @@ public class AktyvumoBaluSistema {
 		Transaction t = s.beginTransaction();
 		
 		try {
-			//s.merge(k);
 			s.update(k);
 			t.commit();
 		}catch(Exception ex) {
@@ -112,30 +111,7 @@ public class AktyvumoBaluSistema {
 		}
 		s.close();
 	}
-	
-	//public void PasalintiGrupeIsKurso
-	
-	/*public void RodytiVisusDestytojus() {
-		System.out.println("Destytojai:");
-		for (Destytojas destytojas : destytojai) {
-			System.out.println(destytojas);
-		}	
-		System.out.println("---------------------------");
-	}//
-	
-	public void RodytiVisasGrupes() {
-		ArrayList<Grupe> gr = getGrupes();
-		for (Grupe grupe : gr) {
-			System.out.println(grupe.getKodas());
-		}		
-	}
-	
-	public void RodytiVisusStudentus() {
-		for(Grupe g: grupes) {
-			g.RodytiGrupesStudentus();
-		}	
-	}*/
-	
+		
 	public Destytojas GautiDestytojaPagalID(int id) throws Exception{
 		
 		Session s = sf.openSession();
@@ -221,22 +197,6 @@ public class AktyvumoBaluSistema {
 		return null;
 	}
 	
-	/*public ArrayList<Kursas> GetDestytojoKursai(Destytojas d){
-		
-		Session s = sf.openSession();
-		Transaction t = s.beginTransaction();
-		ArrayList<Kursas> kursai = null;
-		try {
-			//kursai = (ArrayList<Kursas>) s.createQuery("FROM Kursas WHERE destytojas = " + d.getKodas());
-			//kursai = 
-			t.commit();
-		}catch(Exception ex) {
-			ex.printStackTrace();
-			t.rollback();
-		}
-		s.close();
-		return kursai;
-	}*/
 	
 	public ArrayList<Studentas> getStudentai() {
 		Session s = sf.openSession();
@@ -292,11 +252,7 @@ public class AktyvumoBaluSistema {
 			ex.printStackTrace();
 			t.rollback();
 		}		
-		s.close();
-		
-		/*for(Grupe grupe: gr) {
-			System.out.println(grupe);
-		}*/				
+		s.close();		
 		return gr;
 		
 	}

@@ -97,13 +97,7 @@ public class GrupiuPridejimas extends JDialog {
 	private void UpdateGrupesList() {
 
 		DefaultListModel<Grupe> model = new DefaultListModel<Grupe>();
-		//ArrayList<Grupe> nepridetosGrupes = abs.getGrupes();
 		List<Grupe> nepridetosGrupes = abs.getNeitrauktosGrupes(kursas);
-
-
-		/*for(Grupe g: kursas.getGrupes()) {
-			nepridetosGrupes.remove(g);
-		}*/
 		
 		for(Grupe g: nepridetosGrupes) {
 			model.addElement(g);
@@ -117,16 +111,13 @@ public class GrupiuPridejimas extends JDialog {
 	
 			for(Grupe g: pasirinktosGrupes) {
 				kursas.getGrupes().add(g);
-				//g.getKursai().add(kursas);
 			}
 			abs.AtnaujintiKursa(kursas);
 			this.dispose();
 		
 		}catch(Exception ex) {
 			JOptionPane.showMessageDialog(null, "Nepasirinkote grupes", "Klaida", JOptionPane.ERROR_MESSAGE);
-		}
-		
-		
+		}				
 	}
 	
 	private void Isjungti() {

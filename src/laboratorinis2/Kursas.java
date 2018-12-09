@@ -5,7 +5,6 @@ import java.util.Set;
 
 public class Kursas {
 
-	//private static int kodasCounter = 0;
 	private int kodas;
 	private String pavadinimas;
 	private Destytojas destytojas;
@@ -17,10 +16,8 @@ public class Kursas {
 	}
 	
 	Kursas(String pavadinimas, Destytojas destytojas){
-		//this.kodas = kodasCounter;
 		this.pavadinimas = pavadinimas;		
 		this.destytojas = destytojas;
-		//kodasCounter++;
 	}
 	
 	public void PridetiGrupe(Grupe grupe) {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Uzduotis {
 	
-	//private static int kodasCounter = 0;
 	private int kodas;
 	private String pavadinimas;
 	private String salyga;
@@ -19,14 +18,11 @@ public class Uzduotis {
 	}
 	
 	public Uzduotis(String pavadinimas, String salyga, float maxBalai, String pabaigosData, Kursas kursas){
-		//this.kodas = kodasCounter;
 		this.pavadinimas = pavadinimas;
 		this.salyga = salyga;
 		this.maxBalai = maxBalai;
 		this.pabaigosData = pabaigosData;
 		this.kursas = kursas;
-		//galimaIkeltiDarbus = true;
-		//kodasCounter++;
 	}
 		
 	
@@ -72,18 +68,10 @@ public class Uzduotis {
 	public void setKursas(Kursas kursas) {
 		this.kursas = kursas;
 	}	
-	/*public boolean isGalimaIkeltiDarbus() {
-		return galimaIkeltiDarbus;
-	}
-	public void setGalimaIkeltiDarbus(boolean galimaIkeltiDarbus) {
-		this.galimaIkeltiDarbus = galimaIkeltiDarbus;
-	}*/
 	public ArrayList<AtliktasDarbas> getAtliktiDarbai() {
 		return atliktiDarbai;
 	}
 	
-
-
 	@Override
 	public String toString() {
 		return pavadinimas + " [Pasibaigia: " + pabaigosData + "]";

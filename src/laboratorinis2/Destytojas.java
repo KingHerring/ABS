@@ -5,7 +5,6 @@ import java.util.Set;
 
 public class Destytojas {
 	
-	//private static int kodasCounter = 1000;
 	private int kodas;
 	private String vardas;
 	private String pavarde;
@@ -16,10 +15,8 @@ public class Destytojas {
 	}
 	
 	Destytojas(String vardas, String pavarde){
-		//this.kodas = kodasCounter;
 		this.vardas = vardas;
 		this.pavarde = pavarde;
-		//kodasCounter++;
 	}
 	
 	public void PridetiKursa(String pavadinimas) {
@@ -78,10 +75,6 @@ public class Destytojas {
 
 	public void setKursai(Set<Kursas> kursai) {
 		this.kursai = kursai;
-		/*System.out.println(this.toString());
-		for(Kursas k: this.getKursai()) {
-			System.out.println(k);
-		}*/
 	}
 
 	@Override

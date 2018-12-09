@@ -82,7 +82,6 @@ public class KursoPridejimas extends JDialog {
 	
 	private void PridetiKursa() {
 		abs.DestytojuiPridetiKursa(destytojas, textField.getText());
-		//destytojas.PridetiKursa(textField.getText());
 		this.dispose();
 	}
 	

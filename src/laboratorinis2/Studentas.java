@@ -1,10 +1,9 @@
 package laboratorinis2;
 
-import java.sql.*;//
+import java.sql.*;
 
 public class Studentas {
 	
-	//private static int kodasCounter = 1000;
 	private String vardas;
 	private String pavarde;
 	private int kodas;
@@ -15,10 +14,8 @@ public class Studentas {
 	}
 	
 	public Studentas(String vardas, String pavarde){
-		//this.kodas = kodasCounter;
 		this.vardas = vardas;
 		this.pavarde = pavarde;
-		//kodasCounter++;
 	}
 	
 	
@@ -26,12 +23,7 @@ public class Studentas {
 	public void PateiktiDarba(int kodas, Uzduotis uzduotis, String sprendimas) {
 		AtliktasDarbas darbas = new AtliktasDarbas(kodas, uzduotis, sprendimas, this);
 		uzduotis.getAtliktiDarbai().add(darbas);
-	}
-	
-	/*public static void GautiDuomenisIsDB() {
-		
-	}*/
-	
+	}		
 	
 	public String getVardas() {
 		return vardas;
