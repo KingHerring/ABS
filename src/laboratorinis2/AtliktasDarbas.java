@@ -10,6 +10,7 @@ public class AtliktasDarbas {
 	private String pateikimoLaikas;	
 	private Studentas studentas;
 	private float ivertinimas;
+	private String komentaras;
 	
 	AtliktasDarbas(int kodas, Uzduotis uzduotis, String sprendimas, Studentas studentas){
 		this.kodas = kodas;
@@ -49,5 +50,49 @@ public class AtliktasDarbas {
 	public Studentas getStudentas() {
 		return studentas;
 	}
+
+
+
+	public String getKomentaras() {
+		return komentaras;
+	}
+
+
+
+	public void setKomentaras(String komentaras) {
+		this.komentaras = komentaras;
+	}
+
+
+
+	public void setKodas(int kodas) {
+		this.kodas = kodas;
+	}
+
+
+
+	public void setUzduotis(Uzduotis uzduotis) {
+		this.uzduotis = uzduotis;
+	}
+
+
+
+	public void setSprendimas(String sprendimas) {
+		this.sprendimas = sprendimas;
+	}
+
+
+
+	public void setPateikimoLaikas(String pateikimoLaikas) {
+		this.pateikimoLaikas = pateikimoLaikas;
+	}
+
+
+
+	public void setStudentas(Studentas studentas) {
+		this.studentas = studentas;
+	}
+	
+	
 	
 }
