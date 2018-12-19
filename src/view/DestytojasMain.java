@@ -40,6 +40,7 @@ public class DestytojasMain extends JFrame {
 	private Destytojas destytojas;
 	private JTextField txt1;
 	private Kursas kursas;
+	private Uzduotis uzduotis;
 
 
 	/**
@@ -52,7 +53,7 @@ public class DestytojasMain extends JFrame {
 		this.destytojas = destytojas;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 690, 412);
+		setBounds(100, 100, 770, 412);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,7 +62,7 @@ public class DestytojasMain extends JFrame {
 		txt1 = new JTextField();
 		txt1.setEditable(false);
 		txt1.setBackground(SystemColor.menu);
-		txt1.setBounds(0, 0, 587, 24);
+		txt1.setBounds(0, 0, 665, 24);
 		contentPane.add(txt1);
 		txt1.setColumns(10);
 		
@@ -75,22 +76,35 @@ public class DestytojasMain extends JFrame {
 				
 			}
 		});
-		btn1.setBounds(584, -1, 90, 25);
+		btn1.setBounds(664, -1, 90, 25);
 		contentPane.add(btn1);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 60, 230, 200);
+		scrollPane.setBounds(10, 60, 280, 200);
 		contentPane.add(scrollPane);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(260, 60, 90, 200);
+		scrollPane_1.setBounds(330, 60, 90, 200);
 		contentPane.add(scrollPane_1);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
-		scrollPane_2.setBounds(375, 60, 250, 200);
+		scrollPane_2.setBounds(460, 60, 280, 200);
 		contentPane.add(scrollPane_2);
 		
 		JList<Uzduotis> list_2 = new JList<Uzduotis>();
+		list_2.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				
+				if(list_2.getSelectedIndex()>-1) {
+					uzduotis = list_2.getModel().getElementAt(list_2.getSelectedIndex());
+				}
+				else {
+					uzduotis = null;
+				}
+				
+			}
+		});
+		list_2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane_2.setViewportView(list_2);
 		
 		JList<Grupe> list_1 = new JList<Grupe>();
@@ -126,7 +140,7 @@ public class DestytojasMain extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Kurso grup\u0117s");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(260, 35, 90, 14);
+		lblNewLabel.setBounds(330, 35, 90, 14);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnGrAdd = new JButton("Prid\u0117ti");
@@ -137,7 +151,7 @@ public class DestytojasMain extends JFrame {
 			}
 		});
 		btnGrAdd.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnGrAdd.setBounds(260, 270, 90, 25);
+		btnGrAdd.setBounds(330, 271, 90, 25);
 		contentPane.add(btnGrAdd);
 		
 		JButton btnGrRmv = new JButton("\u0160alinti");
@@ -147,7 +161,7 @@ public class DestytojasMain extends JFrame {
 			}
 		});
 		btnGrRmv.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnGrRmv.setBounds(260, 305, 90, 25);
+		btnGrRmv.setBounds(330, 305, 90, 25);
 		contentPane.add(btnGrRmv);
 		
 		JButton buttonKrAdd = new JButton("Pridėti");
@@ -173,7 +187,7 @@ public class DestytojasMain extends JFrame {
 		
 		JLabel lblKursoUduotys = new JLabel("Kurso užduotys");
 		lblKursoUduotys.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblKursoUduotys.setBounds(375, 36, 99, 14);
+		lblKursoUduotys.setBounds(460, 35, 99, 14);
 		contentPane.add(lblKursoUduotys);
 		
 		JButton button = new JButton("Pridėti");
@@ -183,7 +197,7 @@ public class DestytojasMain extends JFrame {
 			}
 		});
 		button.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button.setBounds(375, 270, 90, 25);
+		button.setBounds(460, 270, 90, 25);
 		contentPane.add(button);
 		
 		JButton button_1 = new JButton("Šalinti");
@@ -193,7 +207,7 @@ public class DestytojasMain extends JFrame {
 			}
 		});
 		button_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		button_1.setBounds(375, 307, 90, 25);
+		button_1.setBounds(460, 305, 90, 25);
 		contentPane.add(button_1);
 		
 		JButton btnRedaguoti = new JButton("Peržiūrėti");
@@ -203,8 +217,18 @@ public class DestytojasMain extends JFrame {
 			}
 		});
 		btnRedaguoti.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRedaguoti.setBounds(536, 270, 90, 25);
+		btnRedaguoti.setBounds(608, 271, 132, 25);
 		contentPane.add(btnRedaguoti);
+		
+		JButton btnkeltiSprendimai = new JButton("Įkelti sprendimai");
+		btnkeltiSprendimai.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PerziuretiIkeltusDarbus();
+			}
+		});
+		btnkeltiSprendimai.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnkeltiSprendimai.setBounds(608, 307, 132, 23);
+		contentPane.add(btnkeltiSprendimai);
 		
 	}
 	
@@ -317,4 +341,15 @@ public class DestytojasMain extends JFrame {
 		ui.setVisible(true);
 		}		
 	}
+	
+	public void PerziuretiIkeltusDarbus(){
+		if( uzduotis != null) {
+		IkeltiSprendimai is = new IkeltiSprendimai(uzduotis);
+		is.setVisible(true);
+		}
+		else { 
+			JOptionPane.showMessageDialog(null, "Nepasirinkote užduoties", "Klaida", JOptionPane.ERROR_MESSAGE);
+		}	
+	}
+	
 }

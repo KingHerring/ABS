@@ -64,19 +64,19 @@ public class UzduotiesPridejimas extends JDialog {
 		}
 		{
 			JLabel lblPavadinimas = new JLabel("Pavadinimas:");
-			lblPavadinimas.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			lblPavadinimas.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblPavadinimas.setBounds(10, 33, 87, 14);
 			contentPanel.add(lblPavadinimas);
 		}
 		{
 			JLabel lblSlyga = new JLabel("S\u0105lyga:");
-			lblSlyga.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			lblSlyga.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblSlyga.setBounds(10, 58, 87, 14);
 			contentPanel.add(lblSlyga);
 		}
 		
 		JLabel lblBalai = new JLabel("Balai:");
-		lblBalai.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblBalai.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblBalai.setBounds(352, 33, 46, 14);
 		contentPanel.add(lblBalai);
 		
@@ -92,7 +92,7 @@ public class UzduotiesPridejimas extends JDialog {
 		pane.setLayout(null);
 		
 		JLabel lblMetai = new JLabel("Metai:");
-		lblMetai.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblMetai.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMetai.setBounds(10, 25, 46, 14);
 		pane.add(lblMetai);
 		
@@ -102,7 +102,7 @@ public class UzduotiesPridejimas extends JDialog {
 		pane.add(metai);
 		
 		JLabel lblMnuo = new JLabel("M\u0117nesis:");
-		lblMnuo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblMnuo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMnuo.setBounds(125, 25, 46, 14);
 		pane.add(lblMnuo);
 		
@@ -113,17 +113,17 @@ public class UzduotiesPridejimas extends JDialog {
 		pane.add(menesis);
 		
 		JLabel lblDiena = new JLabel("Diena:");
-		lblDiena.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblDiena.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblDiena.setBounds(10, 65, 46, 14);
 		pane.add(lblDiena);
 		
 		JLabel lblNewLabel = new JLabel("Valanda:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel.setBounds(125, 65, 46, 14);
 		pane.add(lblNewLabel);
 		
 		JLabel lblMinuts = new JLabel("Minut\u0117s:");
-		lblMinuts.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblMinuts.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblMinuts.setBounds(256, 65, 46, 14);
 		pane.add(lblMinuts);
 		
@@ -155,7 +155,7 @@ public class UzduotiesPridejimas extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Prid\u0117ti");
-				okButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				okButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						PridetiUzduoti();
@@ -172,7 +172,7 @@ public class UzduotiesPridejimas extends JDialog {
 						Isjungti();
 					}
 				});
-				cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				cancelButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
