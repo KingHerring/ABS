@@ -21,6 +21,14 @@
 
             <many-to-one name = "kursas" column = "kursas" 
          class="laboratorinis2.Kursas" not-null="true" lazy ="false"/>
+         
+     <set name = "atliktiDarbai" table = "atlikti_darbai" fetch = "select"  lazy = "false" cascade="all">
+      	<key>
+      		<column name = "uzduotis" not-null = "true"></column>
+      	</key>
+      	<one-to-many class = "laboratorinis2.AtliktasDarbas"/>
+      </set> 
+         
       
    </class>
 </hibernate-mapping>

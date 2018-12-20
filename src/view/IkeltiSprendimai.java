@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import laboratorinis2.AtliktasDarbas;
 import laboratorinis2.Kursas;
 import laboratorinis2.Uzduotis;
 
@@ -56,9 +57,10 @@ public class IkeltiSprendimai extends JDialog {
 		contentPanel.add(scrollPane);
 		
 		table = new JTable();
-		Object[] columns = {"Studentas","Įkėlimo data", "Įvertinimas"};
+		Object[] columns = {"Studento ID","Studentas","Įkėlimo data", "Įvertinimas"};
 		DefaultTableModel model = new DefaultTableModel();
 		model.setColumnIdentifiers(columns);
+		PopulateTable(model);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 
@@ -90,5 +92,19 @@ public class IkeltiSprendimai extends JDialog {
 	
 	public void Isjungti() {
 		this.dispose();
+	}
+	
+	public void PopulateTable(DefaultTableModel model) {
+		Object[] row = new Object[4];
+		for(AtliktasDarbas a: uzduotis.getAtliktiDarbai()) {
+			row[0] = a.getStudentas().getKodas();
+			row[1] = a.getStudentas().getVardas() + " " + a.getStudentas().getPavarde();
+			row[2] = a.getPateikimoLaikas();
+			if(a.getIvertinimas() == -1) row[3] = "neįvertinta";
+			else row[3] = a.getIvertinimas();
+			
+			model.addRow(row);
+		}
+		
 	}
 }

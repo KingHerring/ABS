@@ -1,6 +1,7 @@
 package laboratorinis2;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 public class Uzduotis {
 	
@@ -11,7 +12,7 @@ public class Uzduotis {
 	private String pabaigosData;
 	private Kursas kursas;
 	//private boolean galimaIkeltiDarbus;
-	private ArrayList<AtliktasDarbas> atliktiDarbai = new ArrayList<>();
+	private Set<AtliktasDarbas> atliktiDarbai;
 	
 	public Uzduotis() {
 		
@@ -68,14 +69,18 @@ public class Uzduotis {
 	public void setKursas(Kursas kursas) {
 		this.kursas = kursas;
 	}	
-	public ArrayList<AtliktasDarbas> getAtliktiDarbai() {
+	public Set<AtliktasDarbas> getAtliktiDarbai() {
 		return atliktiDarbai;
+	}
+
+	public void setAtliktiDarbai(Set<AtliktasDarbas> atliktiDarbai) {
+		this.atliktiDarbai = atliktiDarbai;
 	}
 	
 	@Override
 	public String toString() {
 		return pavadinimas + " [Pasibaigia: " + pabaigosData + "]";
 	}
-		
+
 	
 }

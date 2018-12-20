@@ -32,6 +32,7 @@
       <mapping resource = "studentas.xml"/>
       <mapping resource = "kursas.xml"/>
       <mapping resource = "uzduotis.xml"/>
+      <mapping resource = "atliktasDarbas.xml"/>
       
    </session-factory>
 </hibernate-configuration>

@@ -12,6 +12,10 @@ public class AtliktasDarbas {
 	private float ivertinimas;
 	private String komentaras;
 	
+	AtliktasDarbas(){
+		
+	}
+	
 	AtliktasDarbas(int kodas, Uzduotis uzduotis, String sprendimas, Studentas studentas){
 		this.kodas = kodas;
 		this.uzduotis = uzduotis;

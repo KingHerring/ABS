@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import laboratorinis2.AktyvumoBaluSistema;
+import laboratorinis2.AtliktasDarbas;
 import laboratorinis2.Destytojas;
 import laboratorinis2.Grupe;
 import laboratorinis2.Kursas;
@@ -97,6 +98,10 @@ public class DestytojasMain extends JFrame {
 				
 				if(list_2.getSelectedIndex()>-1) {
 					uzduotis = list_2.getModel().getElementAt(list_2.getSelectedIndex());
+					System.out.println(uzduotis.getPavadinimas());
+					for(AtliktasDarbas a: uzduotis.getAtliktiDarbai()) {
+						System.out.println(a.getSprendimas());
+					}
 				}
 				else {
 					uzduotis = null;
