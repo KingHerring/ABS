@@ -55,6 +55,20 @@ public class AktyvumoBaluSistema {
 		s.close();
 	}
 	
+	public void AtnaujintiAtliktaDarba(AtliktasDarbas a) {
+		Session s = sf.openSession();
+		Transaction t = s.beginTransaction();
+		
+		try {
+			s.update(a);
+			t.commit();
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			t.rollback();
+		}
+		s.close();
+	}
+	
 	public void PridetiStudenta(Studentas studentas) {
 		Session s = sf.openSession();
 		Transaction t = s.beginTransaction();
@@ -163,6 +177,25 @@ public class AktyvumoBaluSistema {
 			t.commit();
 			s.close();
 			return studentas;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+			t.rollback();
+			s.close();
+		}
+			
+		Exception ex = new Exception();
+		throw(ex);
+	}
+	
+	public AtliktasDarbas GautiAtliktaDarbaPagalID(int id) throws Exception {
+		Session s = sf.openSession();
+		Transaction t = s.beginTransaction();
+		AtliktasDarbas atliktasDarbas = null;
+		try {
+			atliktasDarbas = s.get(AtliktasDarbas.class, id);
+			t.commit();
+			s.close();
+			return atliktasDarbas;
 		}catch(Exception ex) {
 			ex.printStackTrace();
 			t.rollback();

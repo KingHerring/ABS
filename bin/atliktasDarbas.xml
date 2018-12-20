@@ -21,6 +21,8 @@
       <property name = "komentaras" column = "komentaras" type = "string"/>
 	  <many-to-one name = "studentas" column = "studentas" 
          class="laboratorinis2.Studentas" not-null="true" lazy ="false" />
+      <many-to-one name = "uzduotis" column = "uzduotis" 
+         class="laboratorinis2.Uzduotis" not-null="true" lazy ="false" />
       
    </class>
 </hibernate-mapping>   

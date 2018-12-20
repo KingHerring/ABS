@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import laboratorinis2.AktyvumoBaluSistema;
 import laboratorinis2.AtliktasDarbas;
 import laboratorinis2.Kursas;
 import laboratorinis2.Uzduotis;
@@ -19,6 +20,7 @@ import javax.swing.JTable;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ListSelectionModel;
 
 public class IkeltiSprendimai extends JDialog {
 
@@ -46,18 +48,19 @@ public class IkeltiSprendimai extends JDialog {
 		this.uzduotis = uzduotis;
 		setModal(true);
 		setTitle("\u012Ekelti sprendimai");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 560, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 414, 183);
+		scrollPane.setBounds(10, 11, 524, 183);
 		contentPanel.add(scrollPane);
 		
 		table = new JTable();
-		Object[] columns = {"Studento ID","Studentas","Įkėlimo data", "Įvertinimas"};
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		Object[] columns = {"Darbo ID","Studentas","Įkėlimo data", "Įvertinimas"};
 		DefaultTableModel model = new DefaultTableModel();
 		model.setColumnIdentifiers(columns);
 		PopulateTable(model);
@@ -71,6 +74,11 @@ public class IkeltiSprendimai extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				JButton okButton = new JButton("Vertinti");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						VertintiDarba();
+					}
+				});
 				okButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
@@ -97,7 +105,7 @@ public class IkeltiSprendimai extends JDialog {
 	public void PopulateTable(DefaultTableModel model) {
 		Object[] row = new Object[4];
 		for(AtliktasDarbas a: uzduotis.getAtliktiDarbai()) {
-			row[0] = a.getStudentas().getKodas();
+			row[0] = a.getKodas();
 			row[1] = a.getStudentas().getVardas() + " " + a.getStudentas().getPavarde();
 			row[2] = a.getPateikimoLaikas();
 			if(a.getIvertinimas() == -1) row[3] = "neįvertinta";
@@ -106,5 +114,22 @@ public class IkeltiSprendimai extends JDialog {
 			model.addRow(row);
 		}
 		
+	}
+	
+	public void VertintiDarba() {
+		try {
+			int row = table.getSelectedRow();
+			int atliktoDarboID = (int)table.getValueAt(row, 0);
+			//System.out.println(atliktoDarboID);
+			AktyvumoBaluSistema abs = new AktyvumoBaluSistema();
+			AtliktasDarbas pasirinktasDarbas = abs.GautiAtliktaDarbaPagalID(atliktoDarboID);
+			this.setModal(false);
+			Vertinimas v = new Vertinimas(pasirinktasDarbas, uzduotis);
+			v.setVisible(true);
+			this.setModal(true);
+			
+		}catch(Exception ex) {
+			System.out.println(ex);
+		}
 	}
 }

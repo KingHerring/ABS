@@ -98,10 +98,10 @@ public class DestytojasMain extends JFrame {
 				
 				if(list_2.getSelectedIndex()>-1) {
 					uzduotis = list_2.getModel().getElementAt(list_2.getSelectedIndex());
-					System.out.println(uzduotis.getPavadinimas());
+					/*System.out.println(uzduotis.getPavadinimas());
 					for(AtliktasDarbas a: uzduotis.getAtliktiDarbai()) {
 						System.out.println(a.getSprendimas());
-					}
+					}*/
 				}
 				else {
 					uzduotis = null;
